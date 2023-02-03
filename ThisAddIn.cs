@@ -17,7 +17,7 @@ namespace CategoryThis
         {
             categorySelectPane = new CategorySelectPane();
             categorgySelectCustomTaskPane = this.CustomTaskPanes.Add(categorySelectPane, "Category Select Pane");
-            categorySelectPane.Visible = true;
+            categorgySelectCustomTaskPane.Visible = true;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
