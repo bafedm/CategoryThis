@@ -10,8 +10,14 @@ namespace CategoryThis
 {
     public partial class ThisAddIn
     {
+        private CategorySelectPane categorySelectPane;
+        private Microsoft.Office.Tools.CustomTaskPane categorgySelectCustomTaskPane;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            categorySelectPane = new CategorySelectPane();
+            categorgySelectCustomTaskPane = this.CustomTaskPanes.Add(categorySelectPane, "Category Select Pane");
+            categorySelectPane.Visible = true;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
