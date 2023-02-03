@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Outlook;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,25 @@ namespace CategoryThis
         {
             InitializeComponent();
         }
+
+        private void CategorySelectPane_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Refreshes the list of categories displated in the task pane checklistbox
+        /// </summary>
+        /// <param name="categories">A collection of category objects from the outlook session</param>
+        public void RefreshCblCategoryList(Categories categories) 
+        {
+            cblCategoryList.Items.Clear();
+            foreach (Category category in categories)
+            {
+                cblCategoryList.Items.Add((string)category.Name);
+            }
+        }
+
+
     }
 }

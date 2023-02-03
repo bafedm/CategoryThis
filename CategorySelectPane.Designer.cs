@@ -63,6 +63,7 @@
             this.Controls.Add(this.button1);
             this.Name = "CategorySelectPane";
             this.Size = new System.Drawing.Size(176, 463);
+            this.Load += new System.EventHandler(this.CategorySelectPane_Load);
             this.ResumeLayout(false);
 
         }
