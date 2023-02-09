@@ -42,6 +42,7 @@
             this.btnApplyChkSelection.TabIndex = 0;
             this.btnApplyChkSelection.Text = "Apply";
             this.btnApplyChkSelection.UseVisualStyleBackColor = true;
+            this.btnApplyChkSelection.Click += new System.EventHandler(this.btnApplyChkSelection_Click);
             // 
             // cblCategoryList
             // 
@@ -91,7 +92,6 @@
             this.Controls.Add(this.btnApplyChkSelection);
             this.Name = "CategorySelectPane";
             this.Size = new System.Drawing.Size(176, 463);
-            this.Load += new System.EventHandler(this.CategorySelectPane_Load);
             this.ResumeLayout(false);
 
         }

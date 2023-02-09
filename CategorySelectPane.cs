@@ -18,11 +18,6 @@ namespace CategoryThis
             InitializeComponent();
         }
 
-        private void CategorySelectPane_Load(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Refreshes the list of categories displated in the task pane checklistbox
         /// </summary>
@@ -35,6 +30,7 @@ namespace CategoryThis
                 cblCategoryList.Items.Add((string)category.Name);
             }
         }
+
 
         /// <summary>
         /// Updates the task pane checkbox list.  for each item in the list it 
@@ -58,6 +54,44 @@ namespace CategoryThis
                     }
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Assign selected categories to the selected outlook objects.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnApplyChkSelection_Click(object sender, EventArgs e)
+        {
+            //call metheod to get dictionary of not(unchecked) category names, checkbox status as <string, bool>
+            //where checked = true, indeterminate = false
+            Dictionary<string, bool> userSelectedCategories = GetCheckboxCategorySelection(cblCategoryList);
+            ThisAddIn.SaveCategoriesToOutlookItems(userSelectedCategories);
+        }
+
+
+        /// <summary>
+        /// Returns a dictionary of (key, string) category names that have a check and if that check is indeterminate or not (value, bool)
+        /// </summary>
+        /// <param name="checkedListBox">The category list checkedlistbox object</param>
+        /// <returns></returns>
+        private Dictionary<string, bool> GetCheckboxCategorySelection(CheckedListBox checkedListBox)
+        {
+            Dictionary<string, bool> userSelectedCategores = new Dictionary<string, bool>();
+            foreach (object checkedItem in checkedListBox.CheckedItems)
+            {
+                if (checkedListBox.GetItemCheckState(checkedListBox.Items.IndexOf(checkedItem)) == CheckState.Indeterminate)
+                {
+                    userSelectedCategores.Add(checkedItem.ToString(), false);
+                }
+                else
+                {
+                    userSelectedCategores.Add(checkedItem.ToString(), true);
+                }
+            }
+
+            return userSelectedCategores;
         }
     }
 }
