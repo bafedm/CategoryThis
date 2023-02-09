@@ -39,6 +39,12 @@ namespace CategoryThis
             currentExplorer.BeforeFolderSwitch += new Outlook.ExplorerEvents_10_BeforeFolderSwitchEventHandler(Explorer_BeforeFolderSwitch);
         }
 
+        /// <summary>
+        /// When user selects a folder that belongs to a seperate account the cblCategoryList is refreshed to show that accounts
+        /// categories.
+        /// </summary>
+        /// <param name="newfolder">The folder being selected</param>
+        /// <param name="cancel">defaulted to false</param>
         void Explorer_BeforeFolderSwitch(object newfolder, ref bool cancel)
         {
             cancel = false;

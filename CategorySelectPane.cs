@@ -36,6 +36,28 @@ namespace CategoryThis
             }
         }
 
-
+        /// <summary>
+        /// Updates the task pane checkbox list.  for each item in the list it 
+        /// </summary>
+        /// <param name="selectionCategories"></param>
+        /// <param name="totalItems"></param>        
+        public void UpdateCategoryCheckboxListCheckboxStatus(Dictionary<string, int> selectionCategories, int totalItems)
+        {
+            for (int i = 0; i < cblCategoryList.Items.Count; i++)
+            {
+                cblCategoryList.SetItemCheckState(i, CheckState.Unchecked);
+                if (selectionCategories.ContainsKey(cblCategoryList.Items[i].ToString()))
+                {
+                    if (selectionCategories[cblCategoryList.Items[i].ToString()] == totalItems)
+                    {
+                        cblCategoryList.SetItemCheckState(i, CheckState.Checked);
+                    }
+                    else
+                    {
+                        cblCategoryList.SetItemCheckState(i, CheckState.Indeterminate);
+                    }
+                }
+            }
+        }
     }
 }
